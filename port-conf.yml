@@ -1,0 +1,19 @@
+---
+- name: web port updating
+  hosts: n1
+  become: yes
+
+  tasks:
+  - name: Ensure SELinux permission given or not
+    selinux:
+      policy: targeted
+      state: permissive
+  - name: Ensure server configuration file copied or not
+    copy: 
+      src: httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
+  - name: Ensure server restarted or not 
+    service:
+      name: httpd
+      state: restarted
+...
