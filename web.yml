@@ -1,0 +1,19 @@
+---
+- name: web servers installation
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: Ensure http is installed
+    yum:
+      name: httpd
+      state: installed
+  - name: Ensure server is started
+    service: 
+      name: httpd
+      state: started
+  - name: Ensure server is enabled
+    service: 
+      name: httpd
+      enabled: yes 
+...

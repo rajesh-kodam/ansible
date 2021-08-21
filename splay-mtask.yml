@@ -1,0 +1,14 @@
+---
+- name: web servers updating
+  hosts: web
+
+  tasks:
+  - name: ensure web directory is created
+    file:
+      path: /home/centos/web
+      state: directory
+  - name: ensure text file is downloaded
+    get_url:
+      url: https://filesamples.com/samples/document/txt/sample3.txt
+      dest: /home/centos/web
+...
