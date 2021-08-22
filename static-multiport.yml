@@ -17,10 +17,7 @@
     service:
       name: httpd
       enabled: yes
-  - name: Ensure git is installed 
-    yum:
-      name: git
-      state: installed
+  
   - name: Ensure selinux is in permissive mode
     selinux:
       policy: targeted
@@ -29,13 +26,17 @@
     copy:
       src: httpd.conf
       dest: /etc/httpd/conf/httpd.conf
+  - name: Ensure git is installed
+    yum:
+      name: git
+      state: installed
 
   - name: Ensure getting url for ecomm website
     git: 
       repo: https://github.com/ravi2krishna/ecomm.git
-      dest: /var/www/html
+      dest: /var/www/html/
   - name: Ensure getting url for food website
     git: 
       repo: https://github.com/ravi2krishna/food.git
-      dest: /var/www/html
+      dest: /var/www/html/
   
